@@ -125,7 +125,7 @@ setTimeout(() => {
    Clone the repository and install dependencies:
 
 ```bash
-git clone https://github.com/yourusername/baileys-beginner.git
+git clone https://github.com/Developer-Marcelo/baileys-beginner
 cd baileys-beginner
 npm install
 ```

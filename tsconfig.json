@@ -3,7 +3,7 @@
   "compilerOptions": {
     // File Layout
     "rootDir": "./src",
-    "outDir": "./baileys-beginner",
+    "outDir": "./dist",
     "baseUrl": ".",
     // Environment Settings
     // See also https://aka.ms/tsconfig/module
@@ -46,5 +46,5 @@
     "moduleDetection": "force",
     "skipLibCheck": true
   },
-  "exclude": ["prisma.config.ts", "baileys-beginner"]
+  "exclude": ["prisma.config.ts", "dist"]
 }
