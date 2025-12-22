@@ -1,0 +1,18 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/infrastructure/database/prisma/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Session {
+  pkId      BigInt @id @default(autoincrement())
+  sessionId String
+  id        String
+  data      String @db.Text
+
+  @@unique([sessionId, id], map: "unique_id_per_session_id_session")
+  @@index([sessionId])
+}

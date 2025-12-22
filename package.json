@@ -1,0 +1,49 @@
+{
+  "name": "baileys-beginner",
+  "version": "1.0.0",
+  "description": "Wrapper simples para Baileys WhatsApp - for beginners",
+  "main": "./index.js",
+  "types": "index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./index.js",
+      "types": "./index.d.ts",
+      "require": "./index.js"
+    }
+  },
+  "scripts": {
+    "dev": "npx tsx src/main.ts",
+    "start": "npx tsx baileys-beginner/index.js",
+    "build": "npx tsc"
+  },
+  "keywords": [
+    "baileys",
+    "whatsapp",
+    "wrapper",
+    "for-beginners",
+    "with prisma"
+  ],
+  "author": "https://github.com/developer-marcelo/baileys-beginner <desenvolvedoreasycode@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/developer-marcelo/baileys-beginners"
+  },
+  "license": "MIT",
+  "type": "module",
+  "devDependencies": {
+    "@types/node": "^25.0.3",
+    "@types/qrcode": "^1.5.6",
+    "prisma": "^7.2.0",
+    "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "@hapi/boom": "^10.0.1",
+    "@prisma/adapter-pg": "^7.2.0",
+    "@prisma/client": "^7.2.0",
+    "baileys": "^7.0.0-rc.9",
+    "dotenv": "^17.2.3",
+    "pg": "^8.16.3",
+    "pino": "^10.1.0",
+    "qrcode": "^1.5.4"
+  }
+}
