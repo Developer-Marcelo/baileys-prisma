@@ -2,15 +2,18 @@
   "name": "baileys-beginner",
   "version": "1.0.0",
   "description": "Wrapper simples para Baileys WhatsApp - for beginners",
-  "main": "./index.js",
-  "types": "index.d.ts",
+  "main": "./baileys-beginner/index.js",
+  "types": "./baileys-beginner/index.d.ts",
   "exports": {
     ".": {
-      "import": "./index.js",
-      "types": "./index.d.ts",
-      "require": "./index.js"
+      "import": "./baileys-beginner/index.js",
+      "types": "./baileys-beginner/index.d.ts",
+      "require": "./baileys-beginner/index.js"
     }
   },
+  "files": [
+    "baileys-beginner"
+  ],
   "scripts": {
     "dev": "npx tsx src/main.ts",
     "start": "npx tsx baileys-beginner/index.js",
@@ -23,7 +26,7 @@
     "for-beginners",
     "with prisma"
   ],
-  "author": "https://github.com/developer-marcelo/baileys-beginner <desenvolvedoreasycode@gmail.com>",
+  "author": "Marcelo P. S. P. <desenvolvedoreasycode@gmail.com> (https://github.com/developer-marcelo)",
   "repository": {
     "type": "git",
     "url": "https://github.com/developer-marcelo/baileys-beginners"

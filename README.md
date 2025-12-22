@@ -1,3 +1,5 @@
+**_Maintained and developed by Marcelo BRBX. This is my first official NPM package, designed to simplify WhatsApp baileys integrations for the community._**
+
 Baileys For Beginners 🚀
 A high-level, Clean Architecture based wrapper for the Baileys library. This project simplifies WhatsApp integration by handling session management, connection states, and automatic reconnections internally.
 
