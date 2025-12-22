@@ -1,2 +1,2 @@
-export * from "@/libs/baileys-beginners";
-export * from "@/domain/whatsapp/whatsapp.interface";
+export { BaileysBeginner } from "@/libs/baileys-beginners";
+export type { WhatsappInterface } from "@/domain/whatsapp/whatsapp.interface";
