@@ -20,7 +20,8 @@ export class BaileysBeginner {
   private async internalStart(config: WhatsappInterface): Promise<void> {
     const { connectionService, baileysService } = await BaileysFactory.create(
       this.sessionId,
-      this.browserName
+      this.browserName,
+      config.prisma
     );
 
     this._baileysService = baileysService;

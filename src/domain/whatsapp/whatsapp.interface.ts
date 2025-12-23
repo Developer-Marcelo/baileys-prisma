@@ -1,3 +1,5 @@
+import { SessionRepository } from "@/domain/session/session.repository";
+
 export type BrowserName = "Chrome" | "Firefox" | "Safari" | "Edge";
 
 export interface AdvancedWhatsappInterface {
@@ -18,4 +20,5 @@ export interface BasicWhatsappInterface {
 export interface WhatsappInterface {
   basic: BasicWhatsappInterface;
   advanced: AdvancedWhatsappInterface;
+  prisma: SessionRepository;
 }
