@@ -1,20 +1,52 @@
-**_Maintained and developed by Marcelo BRBX. This is my first official NPM package, designed to simplify WhatsApp baileys integrations for the community._**
+# Baileys For Beginners 🚀
 
-Baileys For Beginners 🚀
-A high-level, Clean Architecture based wrapper for the Baileys library. This project simplifies WhatsApp integration by handling session management, connection states, and automatic reconnections internally.
+**Maintained and developed by Marcelo BRBX.**  
+This is my first official NPM package, designed to simplify WhatsApp Baileys integrations for the community.
 
-✨ Key Features
-Clean Architecture & SOLID: Logic separated into Domain, Application, and Infrastructure layers for high maintainability.
+A high-level, **Clean Architecture–based wrapper** for the Baileys library.  
+This project simplifies WhatsApp integration by handling **session management**, **connection states**, and **automatic reconnections** internally.
 
-Persistent Sessions: Built-in session management using Prisma ORM. Your authentication state is safely stored in your database.
+---
 
-Automatic Reconnection: Internally handles common network issues and the "Restart Required" (515) error without crashing the process.
+## ✨ Key Features
 
-Easy Authentication: Supports both QR Code and Pairing Code (Phone Number) methods.
+- **Clean Architecture & SOLID**  
+  Logic separated into Domain, Application, and Infrastructure layers for high maintainability.
 
-Event-Driven: Simple callbacks for success, failure, and authentication requirements.
+- **Persistent Sessions (Prisma ORM)**  
+  Authentication state is safely stored in your database.
 
-Developer Friendly: Complex Baileys socket logic is hidden behind a clean Facade.
+- **Automatic Reconnection**  
+  Handles network issues and the _Restart Required (515)_ error internally without crashing the process.
+
+- **Easy Authentication**  
+  Supports both **QR Code** and **Pairing Code (Phone Number)** methods.
+
+- **Event-Driven**  
+  Simple callbacks for success, failure, and authentication requirements.
+
+- **Developer Friendly**  
+  Complex Baileys socket logic is hidden behind a clean Facade.
+
+---
+
+## ⚠️ Prisma Schema (REQUIRED)
+
+> **This library will NOT work without the following Prisma model.**
+
+You **MUST** add this model to your `schema.prisma`:
+
+```prisma
+model Session {
+  pkId      BigInt @id @default(autoincrement())
+  sessionId String
+  id        String
+  data      String @db.Text
+
+  @@unique([sessionId, id], map: "unique_id_per_session_id_session")
+  @@index([sessionId])
+}
+```
 
 ## Troubleshooting
 
