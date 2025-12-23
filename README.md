@@ -83,7 +83,9 @@ Database & Prisma Setup
 
 - A unique ID(sessionId) to associate this connection with a specific user in your system.
 
-```prisma-client.ts example
+```
+prisma-client.ts example, create your instance prisma, you need just add Prisma Schema (REQUIRED) in the schema.prisma file.
+
 import "dotenv/config";
 import { PrismaPg } from "@prisma/adapter-pg";
 import { PrismaClient } from "./generated/prisma/client";
