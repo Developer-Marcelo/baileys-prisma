@@ -18,7 +18,10 @@ export class BaileysService implements BaileysServiceInterface {
     phoneNumber: string,
     message: AnyMessageContent
   ): Promise<WAMessage | undefined> {
-    return await this.baileysEntity.socket.sendMessage(phoneNumber, message);
+    return await this.baileysEntity.socket.sendMessage(
+      this.jidTransform(phoneNumber),
+      message
+    );
   }
 
   async onEvent(
@@ -35,7 +38,7 @@ export class BaileysService implements BaileysServiceInterface {
     this.baileysEntity.socket.ev.off(event, callback);
   }
 
-  isConnected() {
+  isConnected(): boolean {
     return this.baileysEntity.socket.ws.isOpen;
   }
 
@@ -49,5 +52,9 @@ export class BaileysService implements BaileysServiceInterface {
 
   get others(): WASocket {
     return this.baileysEntity.socket;
+  }
+
+  private jidTransform(phoneNumber: string): string {
+    return `${phoneNumber}@s.whatsapp.net`;
   }
 }
