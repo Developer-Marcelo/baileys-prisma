@@ -17,7 +17,7 @@
   "scripts": {
     "dev": "npx tsx src/main.ts",
     "start": "npx tsx baileys-beginner/index.js",
-    "build": "npx tsc; npx tsc-alias"
+    "build": "npx tsc && tsc-alias"
   },
   "keywords": [
     "baileys",
