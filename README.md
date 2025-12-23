@@ -30,6 +30,22 @@ This project simplifies WhatsApp integration by handling **session management**,
 
 ---
 
+## License
+
+MIT
+
+🛠️ Tech Stack
+
+- Runtime: Node.js / TypeScript
+
+- WA Library: baileys
+
+- Database: Prisma ORM
+
+- Logging: Pino
+
+**--------------------------------------------------------**
+
 ## ⚠️ Prisma Schema (REQUIRED)
 
 > **This library will NOT work without the following Prisma model.**
@@ -48,70 +64,46 @@ model Session {
 }
 ```
 
-```
-# Example .env
-DATABASE_URL="postgresql://user:password@localhost:5432/mydb"
-```
-
-## Troubleshooting
-
-- Database connection:
-  - Ensure Docker is running and `docker-compose up -d` was executed.
-  - Verify `DATABASE_URL` matches the exposed port (`5432`) and credentials.
-- Prisma client not generated:
-  - Run `npx prisma generate`, then `npx prisma db push`.
-- Pairing code not shown:
-  - Confirm `basic.isPairCode = true` and check console logs in `onAuthRequired`.
-- Fatal errors (logged out, bad session, forbidden):
-  - The session is automatically deleted; restart to create a fresh session.
-
-## License
-
-MIT
-
-🛠️ Tech Stack
-
-- Runtime: Node.js / TypeScript
-
-- WA Library: baileys
-
-- Database: Prisma ORM
-
-- Logging: Pino
-
-**--------------------------------------------------------**
-
 📋 Prerequisites (Pre-configuration)
-Before installing and using @marcelo-developer/baileys-beginner, you must ensure your environment is ready.
+Before installing and using npm install baileys-beginner-prisma, you must ensure your environment is ready.
 
 Database & Prisma Setup
-
-"I have provided a docker-compose.yml example in the root of this repository. You can use it to set up a PostgreSQL database with Prisma ORM. Simply run:
-
-```bash
-docker-compose up -d
-```
 
 **--------------------------------------------------------**
 
 🚀 Getting Started Production
 
 1. Installation
-   npm install baileys-beginner
+   npm install baileys-beginner-prisma
 
 2. Basic Usage
    You don't need to manage sockets or handle complex reconnection logic. Simply instantiate the library and start.
 
 **Observation**
 
-- A unique ID to associate this connection with a specific user in your system.
+- A unique ID(sessionId) to associate this connection with a specific user in your system.
+
+```prisma-client.ts example
+import "dotenv/config";
+import { PrismaPg } from "@prisma/adapter-pg";
+import { PrismaClient } from "./generated/prisma/client";
+
+const connectionString = `${process.env.DATABASE_URL}`;
+
+const adapter = new PrismaPg({ connectionString });
+const prisma = new PrismaClient({ adapter });
+
+export { prisma };
 
 ```
-import { BaileysBeginner } from "baileys-beginner";
-import type { WhatsappInterface } from "baileys-beginner";
+
+```
+import { BaileysBeginner } from "baileys-beginner-prisma";
+import type { WhatsappInterface } from "baileys-beginner-prisma";
+import { prisma } from "./prisma-client";
 
 const sessionId = "default";
-const phoneNumber = "5521999999998";
+const phoneNumber = "5521999999999";
 const browserName = "Chrome";
 
 const baileys = new BaileysBeginner(sessionId, browserName);
@@ -140,17 +132,21 @@ const config: WhatsappInterface = {
       console.log("onRestartRequired");
     },
   },
+  prisma,
 };
 
 await baileys.start(config);
 
-const phoneExample = "5521999999999";
+const phoneExample = "5521999999998";
 
-setTimeout(() => {
-  baileys.beginner.sendMessage(phoneExample, {
-    text: "Hello, World!",
-  });
-}, 10000);
+setInterval(() => {
+  if (baileys.beginner.isConnected()) {
+    baileys.beginner.sendMessage(phoneExample, {
+      text: "Hello, World!",
+    });
+  }
+}, 60 * 1000);
+
 
 ```
 
@@ -162,68 +158,14 @@ setTimeout(() => {
    Clone the repository and install dependencies:
 
 ```bash
-git clone https://github.com/Developer-Marcelo/baileys-beginner
-cd baileys-beginner
+git clone https://github.com/Developer-Marcelo/baileys-beginner-prisma
+cd baileys-beginner-prisma
 npm install
 ```
-
-2. Database Setup
-   Configure your .env file with your database URL and run migrations:
-
-```
-# Example .env
-DATABASE_URL="postgresql://user:password@localhost:5432/mydb"
-
-# Run migrations
-npx prisma generate
-npx prisma db push
-```
-
-3. Basic Usage
-   You don't need to manage sockets or handle complex reconnection logic. Simply instantiate the library and start.
-
-```
-import { WhatsappInterface } from "@/domain/whatsapp/whatsapp.interface";
-import { BaileysForBeginners } from "@/lib/baileys-for-beginners";
-
-const sessionId = "default";
-const phoneNumber = "5521999999999";
-
-const baileys = new BaileysForBeginners(sessionId, "Chrome");
-
-const config: WhatsappInterface = {
-  basic: {
-    sessionId,
-    phoneNumber,
-    isPairCode: true,
-    timeReconnect: 3,
-  },
-  advanced: {
-    onAuthRequired: async (code) => {
-      console.log("onAuthRequired", code);
-    },
-    onFail: async (err) => {
-      console.log("onFail", err);
-    },
-    onFatalFail: async (err) => {
-      console.log("onFatalFail", err);
-    },
-    onSuccess: async () => {
-      console.log("onSuccess");
-    },
-    onRestartRequired: async () => {
-      console.log("onRestartRequired");
-    },
-  },
-};
-
-await baileys.start(config);
 
 Simple Access: Use the main instance for common features.
 
 Native Access: Access the .others property to interact directly with the native Baileys API.
-
-```
 
 🏗️ Architecture Overview
 The system follows Dependency Inversion from SOLID:
