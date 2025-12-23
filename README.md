@@ -48,11 +48,16 @@ model Session {
 }
 ```
 
+```
+# Example .env
+DATABASE_URL="postgresql://user:password@localhost:5432/mydb"
+```
+
 ## Troubleshooting
 
 - Database connection:
   - Ensure Docker is running and `docker-compose up -d` was executed.
-  - Verify `DATABASE_URL` matches the exposed port (`5434`) and credentials.
+  - Verify `DATABASE_URL` matches the exposed port (`5432`) and credentials.
 - Prisma client not generated:
   - Run `npx prisma generate`, then `npx prisma db push`.
 - Pairing code not shown:
