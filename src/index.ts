@@ -13,4 +13,5 @@ export type {
   BaileysEventHandler,
   MakeTransformedPrisma,
   MakeSerializedPrisma,
+  Level,
 } from "./domain/whatsapp/whatsapp.types";

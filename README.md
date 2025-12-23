@@ -116,6 +116,7 @@ const config: WhatsappInterface = {
     phoneNumber,
     isPairCode: true,
     timeReconnect: 3,
+    log: "silent",
   },
   advanced: {
     onAuthRequired: async (code) => {
@@ -147,7 +148,7 @@ setInterval(() => {
       text: "Hello, World!",
     });
   }
-}, 60 * 1000);
+}, 30000);
 
 
 ```

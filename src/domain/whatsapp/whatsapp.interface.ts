@@ -1,4 +1,5 @@
 import { SessionRepository } from "@/domain/session/session.repository";
+import { Level } from "@/domain/whatsapp/whatsapp.types";
 
 export type BrowserName = "Chrome" | "Firefox" | "Safari" | "Edge";
 
@@ -13,6 +14,7 @@ export interface AdvancedWhatsappInterface {
 export interface BasicWhatsappInterface {
   sessionId: string;
   phoneNumber: string;
+  log: Level;
   isPairCode: boolean;
   timeReconnect: number;
 }
