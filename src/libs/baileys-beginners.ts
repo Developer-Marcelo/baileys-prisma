@@ -21,7 +21,8 @@ export class BaileysBeginner {
     const { connectionService, baileysService } = await BaileysFactory.create(
       this.sessionId,
       this.browserName,
-      config.prisma
+      config.prisma,
+      config.basic.log
     );
 
     this._baileysService = baileysService;

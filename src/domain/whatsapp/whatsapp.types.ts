@@ -39,3 +39,12 @@ type SerializePrisma<T> = T extends Buffer
 export type MakeSerializedPrisma<T extends Record<string, any>> = {
   [K in keyof T]: SerializePrisma<T[K]>;
 };
+
+export type Level =
+  | "fatal"
+  | "error"
+  | "warn"
+  | "info"
+  | "debug"
+  | "trace"
+  | "silent";

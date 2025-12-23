@@ -10,6 +10,7 @@ import { PrismaSessionStore } from "@/infrastructure/database/prisma/prisma-sess
 import { SessionRepository } from "@/domain/session/session.repository";
 import makeWASocket, { Browsers } from "baileys";
 import P from "pino";
+import { Level } from "@/domain/whatsapp/whatsapp.types";
 
 export class BaileysFactory {
   private constructor() {}
@@ -17,7 +18,8 @@ export class BaileysFactory {
   public static async create(
     sessionId: string,
     browserName: BrowserName,
-    prisma: SessionRepository
+    prisma: SessionRepository,
+    logPino: Level
   ): Promise<{
     socket: BaileysEntity;
     connectionService: WhatsappConnectionService;
@@ -32,7 +34,7 @@ export class BaileysFactory {
 
     const socket = makeWASocket({
       auth: sessionCreate.state,
-      logger: P({ level: "silent" }),
+      logger: P({ level: logPino }),
       browser: Browsers.appropriate(browserName),
     });
 
