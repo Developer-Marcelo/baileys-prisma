@@ -1,6 +1,4 @@
-import { interceptSessionLogs } from "./internal/console-session-interceptor";
-
-interceptSessionLogs();
+export { interceptSessionLogs } from "./internal/console-session-interceptor";
 
 export { BaileysBeginner } from "./libs/baileys-beginners";
 export type {

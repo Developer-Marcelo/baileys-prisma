@@ -1,6 +1,6 @@
 {
   "name": "baileys-beginner-prisma",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "Wrapper simples para Baileys WhatsApp - for beginners",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -22,9 +22,14 @@
   "keywords": [
     "baileys",
     "whatsapp",
-    "wrapper",
-    "for-beginners",
-    "with prisma"
+    "whatsapp-bot",
+    "whatsapp-api",
+    "baileys-wrapper",
+    "typescript",
+    "prisma",
+    "nodejs",
+    "whatsapp-automation",
+    "for-beginners"
   ],
   "author": "Marcelo P. S. P. <desenvolvedoreasycode@gmail.com> (https://github.com/developer-marcelo)",
   "repository": {

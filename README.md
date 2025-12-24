@@ -153,6 +153,42 @@ setInterval(() => {
 
 ```
 
+🔒 Session Logs Interception (Optional)
+
+This library provides a fine-grained log interception system that allows you to handle specific Baileys session events via dedicated callbacks.
+
+If you don't provide these callbacks, the logs will still print normally to the console.
+
+Example: Using Specific Session Callbacks
+
+```
+import { interceptSessionLogs } from "baileys-beginner-prisma";
+
+interceptSessionLogs({
+  ClosingSession: () => console.log("🔐 Renovação de chaves de sessão"),
+  OpeningSession: () => console.log("🟢 Sessão criptográfica aberta"),
+  RemovingOldClosedSession: () => console.log("🧹 Limpando sessões criptográficas antigas"),
+  MigratingSessionTo: (code) => console.log("🔄 Migrando estrutura de sessão:", code),
+  SessionAlreadyClosed: () => console.log("⚠️ Sessão já estava encerrada"),
+  SessionAlreadyOpen: () => console.log("⚠️ Sessão já estava aberta"),
+  SessionStorageMigrationError: () =>
+    console.log("❌ Erro ao migrar armazenamento de sessão criptográfica"),
+});
+```
+
+Available Callbacks
+
+Event Description
+ClosingSession Triggered when the session is being closed.
+OpeningSession Triggered when the session is being opened.
+RemovingOldClosedSession Triggered when old closed sessions are being cleaned up.
+MigratingSessionTo Triggered when the session is being migrated to a new code.
+SessionAlreadyClosed Triggered when the session is already closed.
+SessionAlreadyOpen Triggered when the session is already open.
+SessionStorageMigrationError Triggered when an error occurs during session storage migration.
+
+| Note: If no callback is provided for an event, the log will print normally to the console.
+
 **--------------------------------------------------------**
 
 🚀 Getting Started Development
