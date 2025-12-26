@@ -103,15 +103,28 @@ export { prisma };
 ```
 
 ```
-import { BaileysPrisma } from "baileys-prisma";
+import { BaileysPrisma, interceptSessionLogs } from "baileys-prisma";
 import type { WhatsappInterface } from "baileys-prisma";
 import { prisma } from "./prisma-client";
 
 const sessionId = "default";
-const phoneNumber = "5521999999999";
+const phoneNumber = "5521999999998";
 const browserName = "Chrome";
 
-const baileys = new BaileysPrisma(sessionId, browserName);
+const baileysPrisma = new BaileysPrisma(sessionId, browserName);
+
+interceptSessionLogs({
+  ClosingSession: () => console.log("🔐 Renovação de chaves de sessão 123"),
+  OpeningSession: () => console.log("🟢 Sessão criptográfica aberta 123"),
+  RemovingOldClosedSession: () =>
+    console.log("🧹 Limpando sessões criptográficas antigas 123"),
+  MigratingSessionTo: (code) =>
+    console.log("🔄 Migrando estrutura de sessão123:", code),
+  SessionAlreadyClosed: () => console.log("⚠️ Sessão já estava encerrada 123"),
+  SessionAlreadyOpen: () => console.log("⚠️ Sessão já estava aberta 123"),
+  SessionStorageMigrationError: () =>
+    console.log("❌ Erro ao migrar armazenamento de sessão criptográfica 123"),
+});
 
 const config: WhatsappInterface = {
   basic: {
@@ -141,17 +154,21 @@ const config: WhatsappInterface = {
   prisma,
 };
 
-await baileys.start(config);
+await baileysPrisma.start(config);
 
-const phoneExample = "5521999999998";
+const phoneExample = "5521999999999";
 
+/* to access native functions baileys
+  const baileys = baileysPrisma.baileys;
+*/
 setInterval(() => {
-  if (baileys.baileysPrisma.isConnected()) {
-    baileys.baileysPrisma.sendMessage(phoneExample, {
+  if (baileysPrisma.isConnected) {
+    baileysPrisma.sendMessage(phoneExample, {
       text: "Hello, World!",
     });
   }
 }, 30000);
+
 
 
 ```
