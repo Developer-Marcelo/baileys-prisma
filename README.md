@@ -1,4 +1,7 @@
-# Baileys For Beginners 🚀
+# Baileys + Prisma ORM 🚀🚀🚀
+
+Gerencie sessões do WhatsApp com Baileys usando Prisma ORM e PostgreSQL.  
+Manage WhatsApp sessions with Baileys using Prisma ORM and PostgreSQL.
 
 **Maintained and developed by Marcelo BRBX.**  
 This is my first official NPM package, designed to simplify WhatsApp Baileys integrations for the community.
@@ -65,7 +68,7 @@ model Session {
 ```
 
 📋 Prerequisites (Pre-configuration)
-Before installing and using npm install baileys-beginner-prisma, you must ensure your environment is ready.
+Before installing and using npm install baileys-prisma, you must ensure your environment is ready.
 
 Database & Prisma Setup
 
@@ -74,7 +77,7 @@ Database & Prisma Setup
 🚀 Getting Started Production
 
 1. Installation
-   npm install baileys-beginner-prisma
+   npm install baileys-prisma
 
 2. Basic Usage
    You don't need to manage sockets or handle complex reconnection logic. Simply instantiate the library and start.
@@ -100,15 +103,15 @@ export { prisma };
 ```
 
 ```
-import { BaileysBeginner } from "baileys-beginner-prisma";
-import type { WhatsappInterface } from "baileys-beginner-prisma";
+import { BaileysPrisma } from "baileys-prisma";
+import type { WhatsappInterface } from "baileys-prisma";
 import { prisma } from "./prisma-client";
 
 const sessionId = "default";
 const phoneNumber = "5521999999999";
 const browserName = "Chrome";
 
-const baileys = new BaileysBeginner(sessionId, browserName);
+const baileys = new BaileysPrisma(sessionId, browserName);
 
 const config: WhatsappInterface = {
   basic: {
@@ -143,8 +146,8 @@ await baileys.start(config);
 const phoneExample = "5521999999998";
 
 setInterval(() => {
-  if (baileys.beginner.isConnected()) {
-    baileys.beginner.sendMessage(phoneExample, {
+  if (baileys.baileysPrisma.isConnected()) {
+    baileys.baileysPrisma.sendMessage(phoneExample, {
       text: "Hello, World!",
     });
   }
@@ -162,7 +165,7 @@ If you don't provide these callbacks, the logs will still print normally to the 
 Example: Using Specific Session Callbacks
 
 ```
-import { interceptSessionLogs } from "baileys-beginner-prisma";
+import { interceptSessionLogs } from "baileys-prisma";
 
 interceptSessionLogs({
   ClosingSession: () => console.log("🔐 Renovação de chaves de sessão"),
@@ -197,8 +200,8 @@ SessionStorageMigrationError Triggered when an error occurs during session stora
    Clone the repository and install dependencies:
 
 ```bash
-git clone https://github.com/Developer-Marcelo/baileys-beginner-prisma
-cd baileys-beginner-prisma
+git clone https://github.com/Developer-Marcelo/baileys-prisma
+cd baileys-prisma
 npm install
 ```
 

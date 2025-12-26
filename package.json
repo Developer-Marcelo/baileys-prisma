@@ -1,7 +1,7 @@
 {
-  "name": "baileys-beginner-prisma",
-  "version": "1.0.9",
-  "description": "Wrapper simples para Baileys WhatsApp - for beginners",
+  "name": "baileys-prisma",
+  "version": "1.0.0",
+  "description": "Baileys WhatsApp + Prisma ORM: gerenciamento de sessões e multi-instâncias com persistência em PostgreSQL | Session management and multi-instance support",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "exports": {
@@ -16,25 +16,42 @@
   ],
   "scripts": {
     "dev": "npx tsx src/main.ts",
-    "start": "npx tsx baileys-beginner/index.js",
+    "start": "npx tsx baileys-prisma/index.js",
     "build": "npx tsc && tsc-alias"
   },
   "keywords": [
-    "baileys",
-    "whatsapp",
-    "whatsapp-bot",
-    "whatsapp-api",
-    "baileys-wrapper",
-    "typescript",
-    "prisma",
-    "nodejs",
-    "whatsapp-automation",
-    "for-beginners"
-  ],
+  "baileys",
+  "baileys-prisma",
+  "whatsapp",
+  "whatsapp-bot",
+  "bot-whatsapp",
+  "automacao-whatsapp",
+  "whatsapp-api",
+  "api-whatsapp",
+  "whatsapp-js",
+  "whatsapp-session",
+  "sessao-whatsapp",
+  "whatsapp-multidevice",
+  "multi-instancia",
+  "multi-instance",
+  "baileys-wrapper",
+  "wrapper-whatsapp",
+  "prisma",
+  "orm",
+  "postgresql",
+  "database",
+  "typescript",
+  "nodejs",
+  "whatsapp-automation"
+],
+"homepage": "https://github.com/Developer-Marcelo/baileys-prisma#readme",
+"bugs": {
+  "url": "https://github.com/Developer-Marcelo/baileys-prisma/issues"
+},
   "author": "Marcelo P. S. P. <desenvolvedoreasycode@gmail.com> (https://github.com/developer-marcelo)",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Developer-Marcelo/baileys-beginner-prisma"
+    "url": "https://github.com/Developer-Marcelo/baileys-prisma"
   },
   "license": "MIT",
   "type": "module",

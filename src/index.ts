@@ -1,6 +1,6 @@
 export { interceptSessionLogs } from "./internal/console-session-interceptor";
 
-export { BaileysBeginner } from "./libs/baileys-beginners";
+export { BaileysPrisma } from './libs/baileys-prisma'
 export type {
   BrowserName,
   AdvancedWhatsappInterface,
